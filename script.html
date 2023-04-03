@@ -1,0 +1,30 @@
+<script>
+  const form = document.getElementById("person-form");
+  const status = document.getElementById("status");
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
+
+    fetch("/people", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, age }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          status.textContent = "Data stored successfully!";
+        } else {
+          status.textContent = "Failed to store data. Please try again.";
+        }
+      })
+      .catch((error) => {
+        status.textContent =
+          "An error occurred while storing data. Please try again.";
+      });
+  });
+</script>
