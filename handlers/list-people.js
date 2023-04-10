@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../helpers/db");
 
 const listPeople = (req, res) => {
   const sql = "SELECT * FROM people";

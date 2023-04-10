@@ -1,9 +1,9 @@
 const express = require("express");
-const home = require("./home");
-const addPeople = require("./add-people");
-const listPeople = require("./list-people");
-const deletePeople = require("./delete-people");
-const updatePeople = require("./update-people");
+const home = require("./handlers/home");
+const addPeople = require("./handlers/add-people");
+const listPeople = require("./handlers/list-people");
+const deletePeople = require("./handlers/delete-people");
+const updatePeople = require("./handlers/update-people");
 
 const app = express();
 

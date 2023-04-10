@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../helpers/db");
 
 const addPeople = (req, res) => {
   const name = req.body.name;

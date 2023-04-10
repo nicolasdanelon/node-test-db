@@ -1,4 +1,4 @@
-const db = require("./db");
+const db = require("../helpers/db");
 
 const deletePeople = (req, res) => {
   const id = req.params.id;
