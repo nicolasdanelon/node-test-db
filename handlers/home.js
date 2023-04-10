@@ -21,13 +21,13 @@ const home = (req, res) => {
     <script>
       const form = document.getElementById('person-form');
       const status = document.getElementById('status');
-      
+
       form.addEventListener('submit', (event) => {
         event.preventDefault();
 
         const name = document.getElementById('name').value;
         const age = document.getElementById('age').value;
-        
+
         // send a POST request to the server to store the data
         fetch('/people', {
           method: 'POST',
