@@ -12,9 +12,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));
 app.use(session({
   secret: '23990b1affd2dc8f5e59048d4d4bef05f6e1c544',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   // cookie: { secure: true } // https
+  cookie: {
+    maxAge: 60 * 60 * 1000, // 1 hora en milisegundos
+  },
 }))
 
 app.get("/", home);
@@ -22,10 +25,16 @@ app.get('/login', login);
 app.post('/login', loginPost);
 app.get('/dashboard', (req, res) => {
   if (req.session.loggedIn) {
-    return res.send(`Hola ${request.session.username}, como estas?`)
+    return res.send(`Hola ${req.session.username}, como estas?`)
   } else {
     return res.send('Tenes que entrar!');
   }
+})
+
+app.get('/logout', (req, res) => {
+  req.session.username = undefined
+  req.session.loggedIn = false
+  res.redirect('/')
 })
 
 app.listen(3000, () => {
