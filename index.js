@@ -1,23 +1,32 @@
-const express = require("express");
-const home = require("./handlers/home");
-const addPeople = require("./handlers/add-people");
-const listPeople = require("./handlers/list-people");
-const deletePeople = require("./handlers/delete-people");
-const updatePeople = require("./handlers/update-people");
+import express from "express";
+import session from "express-session";
+import home from "./handlers/home.js";
+// const home = require("./handlers/home");
+import login from "./handlers/login.js"
+import loginPost from "./handlers/login-post.js";
 
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("static"));
+app.use(session({
+  secret: '23990b1affd2dc8f5e59048d4d4bef05f6e1c544',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: true } // https
+}))
 
-// API
 app.get("/", home);
-app.post("/people", addPeople);
-app.get("/people", listPeople);
-app.delete("/people/:id", deletePeople);
-app.put("/people/:id", updatePeople); // put o patch
-
-// CRUD = Create Read Update Delete
-// ABM  = Alta Baja Modificacion
+app.get('/login', login);
+app.post('/login', loginPost);
+app.get('/dashboard', (req, res) => {
+  if (req.session.loggedIn) {
+    return res.send(`Hola ${request.session.username}, como estas?`)
+  } else {
+    return res.send('Tenes que entrar!');
+  }
+})
 
 app.listen(3000, () => {
   console.log("Server listening on http://localhost:3000");

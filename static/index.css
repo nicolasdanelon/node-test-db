@@ -1,0 +1,95 @@
+body {
+    background-color: #333;
+    font-family: 'Montserrat', sans-serif;
+
+    /*
+        font-style: normal;
+        font-size: 40px;
+        font-family: "Helvetica", Arial, sans-serif;
+    */
+
+    /* web safe fonts
+     https://www.w3schools.com/cssref/css_websafe_fonts.php */
+    /* font: normal 14px "Helvetica", Arial, sans-serif; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto Slab', serif;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    color: #ff0000;
+    text-decoration: none;
+    /*
+        transition-property: all;
+        transition-duration: 0.2s;
+        transition-timing-function: ease;
+        transition-delay: 0.2s;
+    */
+    transition: all 0.2s linear 0.2s;
+}
+
+a:active {
+    color: #99C24D;
+}
+
+a:hover {
+    color: #aa0000;
+}
+
+header,
+footer {
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 800px;
+    background-color: #000;
+}
+
+.logo {
+    display: block;
+    width: 100px;
+    height: 40px;
+    background-color: #000;
+}
+
+
+
+/* Media Query
+    Permitir saber desde que tipo de equipo nos estan visitando
+*/
+
+/* tablet */
+@media screen and (max-width: 800px) {
+    body {
+        background-color: #006E90;
+    }
+
+    section {
+        background-color: #99C24D;
+    }
+}
+
+/* mobile */
+@media screen and (max-width: 400px) {
+    body {
+        background-color: #F18F01;
+    }
+
+    section {
+        background-color: #ADCAD6;
+    }
+}

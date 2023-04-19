@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const home = (req, res) => {
   // define the HTML form
   const form = `
@@ -53,4 +51,4 @@ const home = (req, res) => {
   res.send(form + script);
 };
 
-module.exports = home;
+export default home;
