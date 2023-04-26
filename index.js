@@ -18,25 +18,25 @@ app.use(session({
   cookie: {
     maxAge: 60 * 60 * 1000, // 1 hora en milisegundos
   },
-}))
+}));
 
 app.get("/", home);
 app.get('/login', login);
 app.post('/login', loginPost);
 app.get('/dashboard', (req, res) => {
   if (req.session.loggedIn) {
-    return res.send(`Hola ${req.session.username}, como estas?`)
+    return res.send(`Hola "${req.session.username}", como estas?`);
   } else {
     return res.send('Tenes que entrar!');
   }
-})
+});
 
 app.get('/logout', (req, res) => {
-  req.session.username = undefined
-  req.session.loggedIn = false
-  res.redirect('/')
-})
+  req.session.username = undefined;
+  req.session.loggedIn = false;
+  res.redirect('/');
+});
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("Server listening on http://localhost:3000");
 });
