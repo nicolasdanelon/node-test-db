@@ -24,7 +24,7 @@ const loginPost = (request, response) => {
       response.end();
     });
   } else {
-    response.send('Inrese usuario y contranseña');
+    response.status(401).send('Inrese usuario y contranseña');
     response.end();
   }
 }
