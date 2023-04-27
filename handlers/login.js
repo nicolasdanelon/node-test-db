@@ -1,4 +1,9 @@
 const login = (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
+
   const form = `<h1>Login</h1>
 
 <form action="/login" method="post"> 
