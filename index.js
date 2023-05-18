@@ -4,6 +4,8 @@ import home from "./handlers/home.js";
 // const home = require("./handlers/home");
 import login from "./handlers/login.js"
 import loginPost from "./handlers/login-post.js";
+import categoryPost from "./handlers/category-post.js";
+import category from "./handlers/category.js";
 
 const app = express();
 
@@ -25,11 +27,15 @@ app.get('/login', login);
 app.post('/login', loginPost);
 app.get('/dashboard', (req, res) => {
   if (req.session.loggedIn) {
-    return res.send(`Hola "${req.session.username}", como estas?`);
+    // magic numbers code
+    return res.status(200).send(`Hola "${req.session.username}", como estas?`);
   } else {
-    return res.send('Tenes que entrar!');
+    return res.status(401).send('Tenes que entrar!');
   }
 });
+
+app.get('/category', category);
+app.post('/category', categoryPost);
 
 app.get('/logout', (req, res) => {
   req.session.username = undefined;
@@ -37,6 +43,8 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.listen(3001, () => {
-  console.log("Server listening on http://localhost:3000");
+const port = 3000;
+
+app.listen(port, () => {
+  console.log(`Server listening on http://localhost:${port}`);
 });

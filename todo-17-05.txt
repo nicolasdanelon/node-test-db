@@ -1,0 +1,16 @@
+usarios 
+productos
+
+ordenes (hasMany productos, hasOne user)
+
+ - listado de productos
+ - agregar productos
+ - listado de ordenes dinamico
+
+refactor o refactoring
+magic numbers
+
+LINKS
+
+- upload file: https://github.com/nicolasdanelon/node-test
+- ecomerce : https://github.com/nicolasdanelon/node-test-db/
