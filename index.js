@@ -1,5 +1,6 @@
 import express from "express";
 import session from "express-session";
+import hbs from "hbs";
 import home from "./handlers/home.js";
 // const home = require("./handlers/home");
 import login from "./handlers/login.js"
@@ -9,6 +10,8 @@ import category from "./handlers/category.js";
 
 const app = express();
 
+app.set('view engine', 'hbs');
+app.set('views', './views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));
@@ -16,11 +19,27 @@ app.use(session({
   secret: '23990b1affd2dc8f5e59048d4d4bef05f6e1c544',
   resave: true,
   saveUninitialized: true,
-  // cookie: { secure: true } // https
+  // cookie: {secure: true } // https
   cookie: {
     maxAge: 60 * 60 * 1000, // 1 hora en milisegundos
   },
 }));
+
+app.get('/demo', (req, res) => {
+  res.render('demo');
+})
+
+const demo = {
+  name: 'Nicolas',
+  age: 34,
+  skills: [
+    'Mobile development', 'PHP', 'NodeJS', 'React', 'React native'
+  ]
+};
+
+app.get('/dev-data', (req, res) => {
+  res.render('dynamic', { demo })
+});
 
 app.get("/", home);
 app.get('/login', login);
@@ -43,7 +62,7 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}`);

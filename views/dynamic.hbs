@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Developer Data</title>
+</head>
+
+<body>
+    <h1>Developer</h1>
+    <p>{{demo.name}} is {{demo.age}} years old.</p>
+
+    <h2>Skills</h2>
+    <ul>
+        {{#each demo.skills}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</body>
+
+</html>
